@@ -1,0 +1,36 @@
+{
+    "id": "suraj",
+    "password": "1234",
+    "events": [
+        {
+            "id": 1,
+            "title": "Suraj's Birthday",
+            "event_date": "1995-05-28 00:00:00 IST"
+        },
+        {
+            "event_id": 2,
+            "event_name": "Suraj's Wedding Anniversary",
+            "event_date": "2023-11-02 00:00:00 IST"
+        },
+        {
+            "event_id": 3,
+            "event_name": "Suraj's Engagement Anniversary",
+            "event_date": "2023-10-17 00:00:00 IST"
+        },
+        {
+            "event_id": 4,
+            "event_name": "Dad's Birthday",
+            "event_date": "1963-01-02 00:00:00 IST"
+        },
+        {
+            "event_id": 5,
+            "event_name": "Mom's Birthday",
+            "event_date": "1974-01-01 00:00:00 IST"
+        },
+        {
+            "event_id": 6,
+            "event_name": "Shubhangi's Birthday",
+            "event_date": "1999-12-25 00:00:00 IST"
+        }
+    ]
+}

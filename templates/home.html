@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Home</title>
+        <script src="https://unpkg.com/htmx.org@1.5.0"></script>
+    </head>
+
+    <body>
+        <h1>Welcome</h1>
+        <a href="/create">Create New Event</a>
+        <form action="/list" method="post">
+            <label for="identifier">Identifier:</label>
+            <input type="text" id="identifier" name="identifier" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Open Event List</button>
+        </form>
+    </body>
+
+</html>

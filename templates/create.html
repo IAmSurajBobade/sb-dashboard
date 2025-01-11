@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Create Event</title>
+        <script src="https://unpkg.com/htmx.org@1.5.0"></script>
+    </head>
+
+    <body>
+        <h1>Create New Event</h1>
+        <form hx-post="/create" hx-target="#response">
+            <label for="name">Event Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="date">Event Date:</label>
+            <input type="date" id="date" name="date" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Create</button>
+        </form>
+        <div id="response"></div>
+    </body>
+
+</html>

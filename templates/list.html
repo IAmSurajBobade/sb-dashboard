@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Event List</title>
+        <script src="https://unpkg.com/htmx.org@1.5.0"></script>
+    </head>
+
+    <body>
+        <h1>Event List</h1>
+        <ul>
+            {{range .Events}}
+            <li>{{.Name}} - {{.Date}} - {{.DaysSince}} days since</li>
+            {{end}}
+        </ul>
+    </body>
+
+</html>
