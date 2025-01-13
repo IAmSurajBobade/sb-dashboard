@@ -101,6 +101,23 @@ func UpdateEvent(userID, listName string, event models.Event) {
 	}
 }
 
+func DeleteEvent(userID, listName string, event models.Event) {
+	mutex.Lock()
+	defer mutex.Unlock()
+
+	for i, user := range dataStore {
+		if user.ID == userID {
+			for j, e := range user.Lists[listName] {
+				if e.ID == event.ID {
+					dataStore[i].Lists[listName] = append(dataStore[i].Lists[listName][:j], dataStore[i].Lists[listName][j+1:]...)
+					isDataModified = true
+					return
+				}
+			}
+		}
+	}
+}
+
 func GetEventByID(eventID int) (models.Event, error) {
 	mutex.Lock()
 	defer mutex.Unlock()
@@ -117,7 +134,7 @@ func GetEventByID(eventID int) (models.Event, error) {
 	return models.Event{}, fmt.Errorf("event not found")
 }
 
-func GetEvents(userID, listName string) ([]models.Event, error) {
+func GetEvents(userID, listName string) ([]models.Event, bool, error) {
 	mutex.Lock()
 	defer mutex.Unlock()
 
@@ -126,10 +143,10 @@ func GetEvents(userID, listName string) ([]models.Event, error) {
 			events, exists := user.Lists[listName]
 			if !exists {
 				dataStore[i].Lists[listName] = []models.Event{}
-				return dataStore[i].Lists[listName], nil
+				return dataStore[i].Lists[listName], true, nil
 
 			}
-			return events, nil
+			return events, false, nil
 		}
 	}
 	// If user does not exist, create a new user with an empty list
@@ -140,24 +157,5 @@ func GetEvents(userID, listName string) ([]models.Event, error) {
 	}
 	newUser.Lists[listName] = []models.Event{}
 	dataStore = append(dataStore, newUser)
-	return newUser.Lists[listName], nil
-}
-
-func SaveToFile(filePath string) error {
-	mutex.Lock()
-	defer mutex.Unlock()
-
-	file, err := os.Create(filePath)
-	if err != nil {
-		return err
-	}
-	defer file.Close()
-
-	encoder := json.NewEncoder(file)
-	encoder.SetIndent("", "  ")
-	return encoder.Encode(models.Backup{
-		Service: dataAll.Service,
-		Version: dataAll.Version,
-		Data:    dataStore,
-	})
+	return newUser.Lists[listName], true, nil
 }

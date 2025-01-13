@@ -4,10 +4,12 @@ import "time"
 
 type (
 	Event struct {
-		ID        int       `json:"id"`
-		Title     string    `json:"title"`
-		EventDate time.Time `json:"event_date"`
-		DaysSince int       `json:"days_since"`
+		ID           int       `json:"id"`
+		Title        string    `json:"title"`
+		EventDate    time.Time `json:"event_date"`
+		EventDateStr string    `json:"event_date_str"`
+		AgeInDays    int       `json:"-"`
+		AgeInYears   string    `json:"-"`
 	}
 
 	EventList struct {

@@ -1,6 +1,6 @@
 <div class="form-container" id="edit-form">
     <h2>Edit Event</h2>
-    <form hx-post="/save" hx-swap="outerHTML">
+    <form hx-post="/events/save" hx-swap="outerHTML">
         <input type="hidden" id="event-id" name="id" value="{{.ID}}">
         <input type="hidden" id="user-id" name="user_id" value="{{.UserID}}">
         <input type="hidden" id="list-name" name="list_name" value="{{.ListName}}">
